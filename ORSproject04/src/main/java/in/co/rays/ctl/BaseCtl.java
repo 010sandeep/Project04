@@ -47,6 +47,7 @@ public abstract class BaseCtl extends HttpServlet {
 	 */
 	protected void preload(HttpServletRequest request) {
 		System.out.println("BaseCtl preload called");
+
 	}
 
 	/**
@@ -105,6 +106,8 @@ public abstract class BaseCtl extends HttpServlet {
 			throws ServletException, IOException {
 		preload(request);
 
+		System.out.println("service");
+
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		// Perform validation for all operations except for these
@@ -128,4 +131,10 @@ public abstract class BaseCtl extends HttpServlet {
 	 * implement this method to return its view.
 	 */
 	protected abstract String getView();
+
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+	}
 }

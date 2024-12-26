@@ -66,7 +66,7 @@ public class TestUserModel {
 		long id = 1;
 
 		UserModel model = new UserModel();
-		UserBean bean = model.findBypk(id);
+		UserBean bean = model.findByPk(id);
 
 		if (bean != null) {
 

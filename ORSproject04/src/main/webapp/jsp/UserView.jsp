@@ -1,11 +1,13 @@
-<%@page import="in.co.rays.util.ServletUtility"%>
+<%@page import="java.util.List"%>
+<%@page import="javax.management.relation.RoleList"%>
+<%@page import="in.co.rays.ctl.BaseCtl"%>
+<%@page import="in.co.rays.ctl.UserCtl"%>
 <%@page import="in.co.rays.util.HTMLUtility"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="in.co.rays.ctl.UserRegistrationCtl"%>
+<%@page import="in.co.rays.util.ServletUtility"%>
 <%@page import="in.co.rays.util.DataUtility"%>
-<%@page import="in.co.rays.ctl.ORSView"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +16,29 @@
 </head>
 <body>
 
-	<%@include file="Header.jsp"%>
+<%@include file="Header.jsp" %>
 
-	<form action="<%=ORSView.USER_REGISTRATION_CTL%>" method="post">
+<%
+			List roleList = (List) request.getAttribute("roleList");
+		%>
+<form action="<%=ORSView.USER_CTL%>" method="post">
 		<jsp:useBean id="bean" class="in.co.rays.bean.UserBean"
 			scope="request" />
+			
+			
 
 		<div align="center">
 			<h1>
-				<font color="navy">User Registration</font>
+				<font color="navy">Add User</font>
 			</h1>
+			
+			<!-- Success and Error Messages -->
+			<h3>
+				<font color="green"><%=ServletUtility.getSuccessMessage(request)%></font>
+			</h3>
+			<h3>
+				<font color="red"><%=ServletUtility.getErrorMessage(request)%></font>
+			</h3>
 
 			<!-- Hidden Fields -->
 			<input type="hidden" name="id" value="<%=bean.getId()%>" /> <input
@@ -95,6 +110,14 @@
 					</td>
 					<td style="position: fixed;"><font color="red"><%=ServletUtility.getErrorMessage("gender", request)%></font></td>
 				</tr>
+				
+				
+				<tr>
+					<th align="left">Role <span style="color: red">*</span></th>
+					<td><%=HTMLUtility.getList("roleId", DataUtility.getStringData(bean.getRoleId()), roleList)%></td>
+					<td style="position: fixed;"><font color="red"><%=ServletUtility.getErrorMessage("roleId", request)%></font></td>
+				</tr>
+				
 				<tr>
 					<th align="left">Mobile No<span style="color: red">*</span></th>
 					<td><input type="text" name="mobileNo"
@@ -106,9 +129,9 @@
 				<tr>
 					<td></td>
 					<td colspan="3"><input type="submit" name="operation"
-						value="<%=UserRegistrationCtl.OP_SIGN_UP%>" /> <input
+						value="<%=UserCtl.OP_SAVE%>" /> <input
 						type="submit" name="operation"
-						value="<%=UserRegistrationCtl.OP_RESET%>" /></td>
+						value="<%=UserCtl.OP_RESET%>" /></td>
 				</tr>
 			</table>
 		</div>
