@@ -7,7 +7,7 @@
 <%@page import="in.co.rays.util.ServletUtility"%>
 <%@page import="in.co.rays.util.DataUtility"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,22 +16,35 @@
 </head>
 <body>
 
-<%@include file="Header.jsp" %>
+	<%@include file="Header.jsp"%>
 
-<%
-			List roleList = (List) request.getAttribute("roleList");
-		%>
-<form action="<%=ORSView.USER_CTL%>" method="post">
+	<%
+		List roleList = (List) request.getAttribute("roleList");
+	%>
+	<form action="<%=ORSView.USER_CTL%>" method="post">
 		<jsp:useBean id="bean" class="in.co.rays.bean.UserBean"
 			scope="request" />
-			
-			
+
+		<%
+			if (bean != null && bean.getId() > 0) {
+		%>
+		<h1 align="center">Update User</h1>
+		<%
+			} else {
+		%>
+		
+
+		<h1 align="center">
+			<font color="navy">Add User</font>
+		</h1>
+
+		<%
+			}
+		%>
 
 		<div align="center">
-			<h1>
-				<font color="navy">Add User</font>
-			</h1>
-			
+
+
 			<!-- Success and Error Messages -->
 			<h3>
 				<font color="green"><%=ServletUtility.getSuccessMessage(request)%></font>
@@ -110,14 +123,14 @@
 					</td>
 					<td style="position: fixed;"><font color="red"><%=ServletUtility.getErrorMessage("gender", request)%></font></td>
 				</tr>
-				
-				
+
+
 				<tr>
 					<th align="left">Role <span style="color: red">*</span></th>
 					<td><%=HTMLUtility.getList("roleId", DataUtility.getStringData(bean.getRoleId()), roleList)%></td>
 					<td style="position: fixed;"><font color="red"><%=ServletUtility.getErrorMessage("roleId", request)%></font></td>
 				</tr>
-				
+
 				<tr>
 					<th align="left">Mobile No<span style="color: red">*</span></th>
 					<td><input type="text" name="mobileNo"
@@ -129,9 +142,8 @@
 				<tr>
 					<td></td>
 					<td colspan="3"><input type="submit" name="operation"
-						value="<%=UserCtl.OP_SAVE%>" /> <input
-						type="submit" name="operation"
-						value="<%=UserCtl.OP_RESET%>" /></td>
+						value="<%=UserCtl.OP_SAVE%>" /> <input type="submit"
+						name="operation" value="<%=UserCtl.OP_RESET%>" /></td>
 				</tr>
 			</table>
 		</div>

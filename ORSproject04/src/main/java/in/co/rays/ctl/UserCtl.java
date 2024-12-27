@@ -127,6 +127,23 @@ public class UserCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String op = DataUtility.getString(request.getParameter("operation"));
+		Long id = DataUtility.getLong(request.getParameter("id"));
+
+		if (id > 0) {
+
+			UserModel model = new UserModel();
+
+			try {
+				UserBean bean = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		ServletUtility.forward(getView(), request, response);
 	}
 
