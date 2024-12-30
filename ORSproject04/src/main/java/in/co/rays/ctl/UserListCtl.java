@@ -61,7 +61,7 @@ public class UserListCtl extends BaseCtl {
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
-		
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,6 +83,8 @@ public class UserListCtl extends BaseCtl {
 		UserBean bean = (UserBean) populateBean(request);
 		String op = DataUtility.getString(request.getParameter("operation"));
 		String[] ids = request.getParameterValues("ids");
+
+		System.out.println("op = " + op);
 
 		UserModel model = new UserModel();
 
@@ -112,7 +114,7 @@ public class UserListCtl extends BaseCtl {
 			}
 
 			ServletUtility.setBean(bean, request);
-			
+
 			list = model.search(bean, pageNo, pageSize);
 			next = model.search(bean, pageNo + 1, pageSize);
 
@@ -126,7 +128,6 @@ public class UserListCtl extends BaseCtl {
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
 
-		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

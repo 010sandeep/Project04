@@ -16,7 +16,7 @@
 
 
 			<%@include file="Header.jsp" %>
-	<form action="<%=ORSView.ROLE_LIST_CTL%>" method="get">
+	<form action="<%=ORSView.ROLE_LIST_CTL%>" method="post">
 
 		<%
 			List list = (List) ServletUtility.getList(request);
@@ -33,7 +33,8 @@
 				<th><input type="checkbox"></th>
 				<th>S.NO</th>
 				<th>Name</th>
-				<th>Desription</th>
+				<th>Description</th>
+				<th>Edit</th>
 
 
 
@@ -56,13 +57,18 @@
 				<td><%=bean.getId()%></td>
 				<td><%=bean.getName()%></td>
 				<td><%=bean.getDescription()%></td>
+				<td><a href="<%=ORSView.ROLE_CTL%>?id=<%=bean.getId()%>">edit</a></td>
 
 			</tr>
-
 
 			<%
 				}
 			%>
+			<table>
+				<td><input type="submit" name="operation" value="Delete"></td>
+			
+			</table>
+			
 
 
 		</table>

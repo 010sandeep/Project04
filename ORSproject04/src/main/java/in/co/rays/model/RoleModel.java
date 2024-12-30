@@ -178,6 +178,7 @@ public class RoleModel {
 
 		}
 
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 
@@ -205,6 +206,7 @@ public class RoleModel {
 			bean.setCreatedDatetime(rs.getTimestamp(6));
 			bean.setModifiedDatetime(rs.getTimestamp(7));
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 

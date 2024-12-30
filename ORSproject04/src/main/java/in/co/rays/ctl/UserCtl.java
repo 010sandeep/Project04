@@ -137,8 +137,7 @@ public class UserCtl extends BaseCtl {
 			try {
 				UserBean bean = model.findByPk(id);
 				ServletUtility.setBean(bean, request);
-			} catch (ApplicationException e) {
-				e.printStackTrace();
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -152,6 +151,8 @@ public class UserCtl extends BaseCtl {
 			throws ServletException, IOException {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
+		
+		System.out.println("op = " + op );
 
 		UserBean bean = (UserBean) populateBean(request);
 
@@ -170,6 +171,26 @@ public class UserCtl extends BaseCtl {
 				e.printStackTrace();
 			}
 		} else if (OP_RESET.equalsIgnoreCase(op)) {
+			ServletUtility.redirect(ORSView.USER_CTL, request, response);
+			return;
+		}
+		
+		if (OP_UPDATE.equalsIgnoreCase(op)) {
+			try {
+				model.update(bean);
+				ServletUtility.setSuccessMessage("User Update Successfully..!!", request);
+				ServletUtility.forward(getView(), request, response);
+			} catch (DuplicateRecordException e) {
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setErrorMessage("login id already exist", request);
+				ServletUtility.forward(getView(), request, response);
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (OP_CANCEL.equalsIgnoreCase(op)) {
 			ServletUtility.redirect(ORSView.USER_CTL, request, response);
 			return;
 		}
