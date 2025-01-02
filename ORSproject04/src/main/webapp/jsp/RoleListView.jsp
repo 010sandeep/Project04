@@ -1,3 +1,5 @@
+<%@page import="in.co.rays.util.DataUtility"%>
+<%@page import="in.co.rays.util.HTMLUtility"%>
 <%@page import="in.co.rays.util.ServletUtility"%>
 <%@page import="in.co.rays.bean.RoleBean"%>
 <%@page import="java.util.Iterator"%>
@@ -15,14 +17,32 @@
 <body>
 
 
-			<%@include file="Header.jsp" %>
+	<%@include file="Header.jsp"%>
 	<form action="<%=ORSView.ROLE_LIST_CTL%>" method="post">
+		<jsp:useBean id="bean" class="in.co.rays.bean.RoleBean"
+			scope="request" />
 
 		<%
 			List list = (List) ServletUtility.getList(request);
+		List roleList = (List) request.getAttribute("roleList");
 		%>
 
 		<h1 align="center">Role List</h1>
+
+		<table>
+
+
+			<th>Role :</th>
+			<td><%=HTMLUtility.getList("roleId", DataUtility.getStringData(bean.getId()), roleList)%></td>
+			&nbsp;
+			<th>Name :</th>
+			<td><input type="text" name="Name" placeholder="Enter Name"></td>
+			&nbsp;
+			<td><input type="submit" name="operation" value="Search"></td>
+			<td><input type="submit" name="operation" value="Reset"></td>
+
+		</table>
+		<br><br>
 
 
 		<table border="1px" width="100%">
@@ -47,7 +67,7 @@
 
 				while (it.hasNext()) {
 
-					RoleBean bean = (RoleBean) it.next();
+					 bean = (RoleBean) it.next();
 			%>
 
 
@@ -66,9 +86,9 @@
 			%>
 			<table>
 				<td><input type="submit" name="operation" value="Delete"></td>
-			
+
 			</table>
-			
+
 
 
 		</table>

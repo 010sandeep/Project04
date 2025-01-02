@@ -30,7 +30,7 @@ public class CourseModel {
 			System.out.println("max id = " + pk);
 
 		}
-
+		JDBCDataSource.closeConnection(conn);
 		return pk + 1;
 
 	}
@@ -161,6 +161,8 @@ public class CourseModel {
 			list.add(bean);
 
 		}
+
+		JDBCDataSource.closeConnection(conn);
 		return list;
 	}
 
@@ -190,6 +192,8 @@ public class CourseModel {
 			bean.setModifiedDatetime(rs.getTimestamp(8));
 
 		}
+
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 
 	}
@@ -221,6 +225,7 @@ public class CourseModel {
 
 		}
 
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 
 	}

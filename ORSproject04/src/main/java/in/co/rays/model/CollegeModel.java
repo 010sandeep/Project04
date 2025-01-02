@@ -27,6 +27,7 @@ public class CollegeModel {
 			System.out.println("max id =  " + pk);
 
 		}
+		JDBCDataSource.closeConnection(conn);
 		return pk + 1;
 	}
 
@@ -43,7 +44,7 @@ public class CollegeModel {
 
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_college values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		pstmt.setLong(1, bean.getId());
+		pstmt.setLong(1, nextpk());
 		pstmt.setString(2, bean.getName());
 		pstmt.setString(3, bean.getAddress());
 		pstmt.setString(4, bean.getState());
@@ -165,6 +166,8 @@ public class CollegeModel {
 
 		}
 
+		JDBCDataSource.closeConnection(conn);
+
 		return list;
 	}
 
@@ -196,6 +199,8 @@ public class CollegeModel {
 			bean.setModifiedDatetime(rs.getTimestamp(10));
 
 		}
+
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 
 	}
@@ -228,6 +233,8 @@ public class CollegeModel {
 			bean.setModifiedDatetime(rs.getTimestamp(10));
 
 		}
+
+		JDBCDataSource.closeConnection(conn);
 
 		return bean;
 	}

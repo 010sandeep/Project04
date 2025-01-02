@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.model.RoleModel;
 import in.co.rays.util.DataUtility;
@@ -19,6 +20,33 @@ public class RoleListCtl extends BaseCtl {
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 		return true;
+	}
+
+	@Override
+	protected void preload(HttpServletRequest request) {
+
+		RoleModel model = new RoleModel();
+
+		List roleList;
+		try {
+			roleList = model.list();
+			request.setAttribute("roleList", roleList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	protected BaseBean populateBean(HttpServletRequest request) {
+
+		RoleBean bean = new RoleBean();
+
+		bean.setName(DataUtility.getString(request.getParameter("Name")));
+		bean.setId(DataUtility.getLong(request.getParameter("roleId")));
+		return bean;
+
 	}
 
 	@Override
@@ -40,12 +68,19 @@ public class RoleListCtl extends BaseCtl {
 
 					model.delete(Integer.parseInt(id));
 
-					List list = model.search(bean, 0, 0);
-					ServletUtility.setList(list, request);
-
 				}
 
 			}
+
+			if (OP_SEARCH.equalsIgnoreCase(op)) {
+
+				model.search(bean, 0, 0);
+
+			}
+
+			List list = model.search(bean, 0, 0);
+			ServletUtility.setBean(bean, request);
+			ServletUtility.setList(list, request);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
