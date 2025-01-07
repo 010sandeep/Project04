@@ -34,6 +34,8 @@ public class StudentModel {
 
 		}
 
+		JDBCDataSource.closeConnection(conn);
+
 		return pk + 1;
 	}
 
@@ -191,6 +193,7 @@ public class StudentModel {
 			list.add(bean);
 
 		}
+		JDBCDataSource.closeConnection(conn);
 		return list;
 
 	}
@@ -224,7 +227,7 @@ public class StudentModel {
 			bean.setCreatedDatetime(rs.getTimestamp(12));
 			bean.setModifiedDatetime(rs.getTimestamp(13));
 		}
-
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 

@@ -17,7 +17,7 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet("/RoleCtl")
+@WebServlet(name = "RoleCtl", urlPatterns = { "/ctl/RoleCtl" })
 public class RoleCtl extends BaseCtl {
 
 	@Override
@@ -134,6 +134,8 @@ public class RoleCtl extends BaseCtl {
 			ServletUtility.redirect(ORSView.ROLE_CTL, request, response);
 			return;
 		}
+		
+		
 		
 		
 		

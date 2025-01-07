@@ -98,6 +98,12 @@ public class RoleModel {
 
 			}
 
+			if (bean.getId() > 0) {
+
+				sql.append(" and id like " + bean.getId());
+
+			}
+
 		}
 
 		if (pageSize > 0) {

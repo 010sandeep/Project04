@@ -46,7 +46,7 @@ public class SubjectModel {
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_subject values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		pstmt.setLong(1, bean.getId());
+		pstmt.setLong(1, nextpk());
 		pstmt.setString(2, bean.getName());
 		pstmt.setLong(3, bean.getCourseId());
 		pstmt.setString(4, bean.getCourseName());

@@ -6,8 +6,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Include jQuery UI -->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<!-- Include jQuery UI CSS -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="/ORSproject04/js/checkbox.js"></script>
+<script src="/ORSproject04/js/datepicker.js"></script>
+
+<script src="/ORSproject04/js/datepikerpp.js"></script>
+
+
+
 </head>
 <body>
 
@@ -50,7 +63,15 @@
 				href="<%=ORSView.ROLE_LIST_CTL%>">Role List</a> | <a
 				href="<%=ORSView.COLLEGE_CTL%>">Add College</a> | <a
 				href="<%=ORSView.COLLEGE_LIST_CTL%>">College List</a> | <a
-				href="<%=ORSView.COURSE_CTL%>">Add Course</a>
+				href="<%=ORSView.COURSE_CTL%>">Add Course</a> | <a
+				href="<%=ORSView.COURSE_LIST_CTL%>">Course List</a> | <a
+				href="<%=ORSView.STUDENT_CTL%>">Add Student</a> | <a
+				href="<%=ORSView.STUDENT_LIST_CTL%>">Student List</a> | <a
+				href="<%=ORSView.SUBJECT_CTL%>">Add Subject</a> | <a
+				href="<%=ORSView.SUBJECT_LIST_CTL%>">Subject List</a> | <a
+				href="<%=ORSView.MARKSHEET_CTL%>">Add Marksheet</a> | <a
+				href="<%=ORSView.PURCHASE_CTL%>">Add Purchase</a> |
+				<a href="<%=ORSView.PURCHASE_LIST_CTL%>">Purchase List</a> |
 		</tr>
 		<%
 			}

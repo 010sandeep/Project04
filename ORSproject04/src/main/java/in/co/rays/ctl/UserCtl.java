@@ -20,7 +20,7 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet("/UserCtl")
+@WebServlet(name = "UserCtl", urlPatterns = { "/ctl/UserCtl" })
 public class UserCtl extends BaseCtl {
 
 	@Override
@@ -151,8 +151,8 @@ public class UserCtl extends BaseCtl {
 			throws ServletException, IOException {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		
-		System.out.println("op = " + op );
+
+		System.out.println("op = " + op);
 
 		UserBean bean = (UserBean) populateBean(request);
 
@@ -174,7 +174,7 @@ public class UserCtl extends BaseCtl {
 			ServletUtility.redirect(ORSView.USER_CTL, request, response);
 			return;
 		}
-		
+
 		if (OP_UPDATE.equalsIgnoreCase(op)) {
 			try {
 				model.update(bean);

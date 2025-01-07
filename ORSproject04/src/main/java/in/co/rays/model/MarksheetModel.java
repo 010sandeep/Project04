@@ -179,7 +179,7 @@ public class MarksheetModel {
 			list.add(bean);
 
 		}
-
+		JDBCDataSource.closeConnection(conn);
 		return list;
 
 	}

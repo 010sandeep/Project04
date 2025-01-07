@@ -21,8 +21,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 	public static final String OP_SIGN_UP = "Sign Up";
 	public static final String OP_RESET = "Reset";
-	
-	
+
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 		boolean isValid = true;
@@ -111,7 +110,6 @@ public class UserRegistrationCtl extends BaseCtl {
 
 		return isValid;
 	}
-
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
