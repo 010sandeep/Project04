@@ -24,8 +24,19 @@
 
 		<div align="center">
 
-			<h1>Add Purchase</h1>
+			<%
+				if (bean != null) {
+			%>
+			<h1>Update Purchase</h1>
 
+			<%
+				} else {
+			%>
+
+			<h1>Add Purchase</h1>
+			<%
+				}
+			%>
 
 			<h3>
 				<font color="green"><%=ServletUtility.getSuccessMessage(request)%></font>
