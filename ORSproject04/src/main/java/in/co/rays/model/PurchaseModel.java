@@ -167,10 +167,11 @@ public class PurchaseModel {
 			bean.setQuantity(rs.getInt(2));
 			bean.setPrice(rs.getDouble(3));
 			bean.setPurchasedate(rs.getDate(4));
-			bean.setCreatedBy(rs.getString(4));
-			bean.setModifiedBy(rs.getString(5));
-			bean.setCreatedDatetime(rs.getTimestamp(6));
-			bean.setModifiedDatetime(rs.getTimestamp(7));
+			bean.setOrdertype(rs.getString(5));
+			bean.setCreatedBy(rs.getString(6));
+			bean.setModifiedBy(rs.getString(7));
+			bean.setCreatedDatetime(rs.getTimestamp(8));
+			bean.setModifiedDatetime(rs.getTimestamp(9));
 
 		}
 

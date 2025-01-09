@@ -28,12 +28,17 @@
 			<h3>
 				<font color="red"><%=ServletUtility.getErrorMessage(request)%></font>
 			</h3>
+			<%} %>
 
-			<%
-				}
-			%>
+			<%if(bean != null && bean.getId() > 0) {%>
+
+			<h1>Update College</h1>
+
+			<%}else{ %>
 
 			<h1>Add College</h1>
+
+			<%} %>
 
 
 			<!-- Hidden Fields -->
@@ -95,12 +100,27 @@
 			</table>
 
 			<table>
+				
+<%
+						if (bean != null && bean.getId() > 0) {
+					%>
 
+					<td align="left" colspan="2"><input type="submit"
+						name="operation" value="<%=CollegeCtl.OP_UPDATE%>"> <input
+						type="submit" name="operation" value="<%=CollegeCtl.OP_CANCEL%>"></td>
+						<%
+							} else {
+						%>
+					<td><input type="submit" name="operation"
+						value="<%=CollegeCtl.OP_SAVE%>"></td>
+					<td><input type="submit" name="operation"
+						value="<%=CollegeCtl.OP_RESET%>"></td>
+					<%
+						}
+					%>
+					
 
-				<td><input type="submit" name="operation"
-					value="<%=CollegeCtl.OP_SAVE%>"></td>
-				<td><input type="submit" name="operation"
-					value="<%=CollegeCtl.OP_RESET%>"></td>
+				
 
 
 			</table>

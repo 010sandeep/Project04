@@ -72,6 +72,8 @@
 				href="<%=ORSView.MARKSHEET_CTL%>">Add Marksheet</a> | <a
 				href="<%=ORSView.PURCHASE_CTL%>">Add Purchase</a> |
 				<a href="<%=ORSView.PURCHASE_LIST_CTL%>">Purchase List</a> |
+				<a href="<%=ORSView.DOCTOR_CTL%>">Add Doctor</a> |
+				<a href="<%=ORSView.DOCTOR_LIST_CTL%>">Doctor List</a> |
 		</tr>
 		<%
 			}

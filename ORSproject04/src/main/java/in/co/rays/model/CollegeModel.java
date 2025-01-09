@@ -134,7 +134,7 @@ public class CollegeModel {
 
 		if (pageSize > 0) {
 
-			pageNo = (pageSize - 1) * pageSize;
+			pageNo = (pageNo - 1) * pageSize;
 			sql.append(" limit " + pageNo + "," + pageSize);
 
 		}

@@ -39,13 +39,13 @@ public class CollegeCtl extends BaseCtl {
 			request.setAttribute("Address", PropertyReader.getValue("error.require", "Address"));
 			isValid = false;
 		} else if (!DataValidator.isName(Address)) {
-			request.setAttribute("description", "Invalid  Address");
+			request.setAttribute("Address", "Invalid  Address");
 			isValid = false;
 
 		}
 
 		String State = request.getParameter("State");
-		if (DataValidator.isNull(Address)) {
+		if (DataValidator.isNull(State)) {
 			request.setAttribute("State", PropertyReader.getValue("error.require", "State"));
 			isValid = false;
 		} else if (!DataValidator.isName(State)) {
@@ -58,11 +58,7 @@ public class CollegeCtl extends BaseCtl {
 		if (DataValidator.isNull(City)) {
 			request.setAttribute("City", PropertyReader.getValue("error.require", "City"));
 			isValid = false;
-		} else if (!DataValidator.isName(Address)) {
-			request.setAttribute("City", "Invalid  City");
-			isValid = false;
-
-		}
+		} 
 
 		String PhoneNo = request.getParameter("PhoneNo");
 		if (DataValidator.isNull(PhoneNo)) {
@@ -100,6 +96,20 @@ public class CollegeCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		Long id = DataUtility.getLong(request.getParameter("id"));
+		CollegeModel model  = new CollegeModel();
+		
+		if (id > 0) {
+			try {
+				CollegeBean bean  = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 		ServletUtility.forward(getView(), request, response);
 
 	}
@@ -122,6 +132,12 @@ public class CollegeCtl extends BaseCtl {
 				ServletUtility.setSuccessMessage("Data Added Successsfully", request);
 				ServletUtility.forward(getView(), request, response);
 			}
+			
+			if (OP_UPDATE.equalsIgnoreCase(op)) {
+				
+				model.update(bean);
+				ServletUtility.setSuccessMessage("Data Update Successfully..", request);
+			}
 
 			if (OP_RESET.equalsIgnoreCase(op)) {
 
@@ -129,6 +145,7 @@ public class CollegeCtl extends BaseCtl {
 				return;
 
 			}
+			
 		} catch (Exception e) {
 
 			ServletUtility.setBean(bean, request);

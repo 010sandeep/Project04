@@ -58,6 +58,7 @@ public class PurchaseListCtl extends BaseCtl {
 			if (OP_NEW.equalsIgnoreCase(op)) {
 				
 				ServletUtility.redirect(ORSView.PURCHASE_CTL, request, response);
+				return;
 				
 			}
 			

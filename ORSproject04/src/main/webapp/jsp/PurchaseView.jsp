@@ -25,7 +25,7 @@
 		<div align="center">
 
 			<%
-				if (bean != null) {
+				if (bean != null && bean.getId() > 0) {
 			%>
 			<h1>Update Purchase</h1>
 
@@ -134,13 +134,27 @@
 			</table>
 
 			<table>
+				<tr>
 
+					<%
+						if (bean != null && bean.getId() > 0) {
+					%>
 
-				<td><input type="submit" name="operation"
-					value="<%=PurchaseCtl.OP_SAVE%>"></td>
-				<td><input type="submit" name="operation"
-					value="<%=PurchaseCtl.OP_RESET%>"></td>
+					<td align="left" colspan="2"><input type="submit"
+						name="operation" value="<%=PurchaseCtl.OP_UPDATE%>"> <input
+						type="submit" name="operation" value="<%=PurchaseCtl.OP_CANCEL%>">
+						<%
+							} else {
+						%>
+					<td><input type="submit" name="operation"
+						value="<%=PurchaseCtl.OP_SAVE%>"></td>
+					<td><input type="submit" name="operation"
+						value="<%=PurchaseCtl.OP_RESET%>"></td>
+					<%
+						}
+					%>
 
+				</tr>
 			</table>
 
 
